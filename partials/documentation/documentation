@@ -1,0 +1,273 @@
+<h2 id="getting-started">Getting started</h2>
+
+<p>To use Algolia Places, all you need is an <code>&lt;input /&gt;</code> and some JavaScript code that will load<br />
+and use the places.js library.</p>
+
+<h3 id="using-script-tags">Using <code>&lt;script&gt;</code> tags</h3>
+
+<div class="codehilite html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7</pre></td><td class="code"><pre><span class="nt">&lt;input</span>  <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"demo"</span> <span class="na">placeholder=</span><span class="s">"Where are we going?"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//cdn.jsdelivr.net/places.js/0/places.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="kd">var</span> <span class="nx">placesAutocomplete</span> <span class="o">=</span> <span class="nx">places</span><span class="p">({</span>
+    <span class="na">container</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#places-demo'</span><span class="p">)</span>
+  <span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<h3 id="with-npm">With npm</h3>
+
+<p>Install the module:</p>
+
+<div class="codehilite shell"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>npm install places.js --save
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Put an <code>&lt;input /&gt;</code> in your html page:</p>
+
+<div class="codehilite html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">id=</span><span class="s">"demo"</span> <span class="na">placeholder=</span><span class="s">"Where are we going?"</span> <span class="nt">/&gt;</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Initialize the places.js library:</p>
+
+<div class="codehilite javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre><span class="kr">import</span> <span class="nx">places</span> <span class="nx">from</span> <span class="s1">'places.js'</span><span class="p">;</span>
+<span class="kr">const</span> <span class="nx">placesAutocomplete</span> <span class="o">=</span> <span class="nx">places</span><span class="p">({</span>
+  <span class="na">container</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#places-demo'</span><span class="p">)</span>
+<span class="p">});</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<h3 id="demo">Demo</h3>
+
+<p>As a result, you will get the Algolia Places autocompletion menu:</p>
+
+<p><input type="text" id="docs-getting-started-demo" placeholder="Where are we going?" /></p>
+
+<h2 id="api">API</h2>
+
+<h3 id="options">options</h3>
+
+<p>Here are the options you can pass to the <code>places(options)</code> function.</p>
+
+<!-- Indentation is on purpose for <td>s, to allow HTML inside markdown -->
+<table class="api">
+  <thead><tr>
+    <th>Option name</th>
+    <th>Type</th>
+    <th>Required</th>
+    <th>Description</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+<td><code>container</code></td>
+<td><a href="https://www.w3.org/2003/01/dom2-javadoc/org/w3c/dom/html2/HTMLInputElement.html">HTMLInputElement</a></td>
+<td><strong>yes</strong></td>
+<td>
+        <p>Determines the <code>&lt;input /&gt;</code> that will be used for the Algolia Places autocompletion menu.</p>
+
+        <p>You just need to pass a reference to an Element. Obtained via
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector">document.querySelector</a> for example.</p>
+      </td>
+    </tr>
+    <tr>
+<td><code>language</code></td>
+<td>string</td>
+<td>no</td>
+<td>
+        <p>Change the default language of the results.
+You can pass two letters country codes (<a href="https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements">ISO 639-1</a>).</p>
+
+        <p><strong>Default</strong>: Current user language obtained via <code>navigator.language</code> in the two letter form.
+Example: <code>en</code> when navigator.language is <code>en_US</code>.</p>
+      </td>
+    </tr>
+    <tr>
+<td><code>countries</code></td>
+<td>string[]</td>
+<td>no</td>
+<td>
+        <p>Change the countries to search in. You must pass an array of two letters country codes
+(<a href="https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements">ISO 639-1</a>).</p>
+
+        <p><strong>Default</strong>: Search on the whole planet.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Simple example with only the required parameter:</p>
+
+<div class="codehilite javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre><span class="kr">const</span> <span class="nx">placesAutocomplete</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">container</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#demo'</span><span class="p">)</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>Advanced example using all parameters:</p>
+
+<div class="codehilite javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="kr">const</span> <span class="nx">placesAutocomplete</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">container</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#demo'</span><span class="p">),</span>
+  <span class="na">language</span><span class="p">:</span> <span class="s1">'de'</span><span class="p">,</span>
+  <span class="na">countries</span><span class="p">:</span> <span class="p">[</span><span class="s1">'us'</span><span class="p">,</span> <span class="s1">'ru'</span><span class="p">]</span>
+<span class="p">};</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<h3 id="events">events</h3>
+
+<p>The Algolia Places autocomplete exposes some events that you can register to:</p>
+
+<div class="codehilite javascript"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="kr">const</span> <span class="nx">placesAutocomplete</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">container</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">'#demo'</span><span class="p">)</span>
+<span class="p">};</span>
+
+<span class="nx">placesAutocomplete</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'change'</span><span class="p">,</span> <span class="nx">suggestion</span> <span class="o">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">suggestion</span><span class="p">));</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<table class="api">
+  <thead><tr>
+    <th>Event name</th>
+    <th>Event data</th>
+    <th>Fired when</th>
+    <th>Usecase</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+<td><code>change</code></td>
+<td><a href="#suggestion-object">suggestion</a></td>
+<td>
+        <p>Suggestion selected in the dropdown or hint was validated.</p>
+      </td>
+<td>
+        <p>FIXME</p>
+      </td>
+    </tr>
+    <tr>
+<td><code>suggestions</code></td>
+<td><a href="#suggestion-object">suggestion</a>[]</td>
+<td>
+        <p>Dropdown receives suggestions. You will receive the array of suggestions that are displayed.</p>
+      </td>
+<td>
+        <p>You can use this event to display the suggestions <a href="FIXME example">on a map</a>.</p>
+      </td>
+    </tr>
+    <tr>
+<td><code>cursorchanged</code></td>
+<td><a href="#suggestion-object">suggestion</a></td>
+<td>
+        <p>Arrows keys used to navigate suggestions.</p>
+      </td>
+<td>
+        <p>You can use this event to <a href="FIXME">pre-fill other form elements</a>.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="suggestion-object">Suggestion object</h3>
+
+<p>All of the events will send suggestion objects with those propreties:</p>
+
+<table class="api">
+  <thead><tr>
+    <th>Property name</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr></thead>
+  <tbody>
+    <tr>
+<td><code>administrative</code></td>
+<td>string</td>
+<td>
+        <p>FIXME.</p>
+      </td>
+    </tr>
+    <tr>
+<td><code>city</code></td>
+<td>string</td>
+<td>
+        <p>City name.</p>
+      </td>
+    </tr>
+    <tr>
+<td><code>country</code></td>
+<td>string</td>
+<td>
+        <p>Country name.</p>
+      </td>
+    </tr>
+    <tr>
+<td><code>countryCode</code></td>
+<td>string</td>
+<td>
+        <p>Two letters country code (<a href="https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements">ISO 639-1</a>).</p>
+      </td>
+    </tr>
+    <tr>
+<td><code>isCity</code></td>
+<td>boolean</td>
+<td>
+        <p>Will be true if the current suggestion is a city.</p>
+      </td>
+    </tr>
+    <tr>
+<td><code>lat</code></td>
+<td>number</td>
+<td>
+        <p>Latitude of the place found.</p>
+      </td>
+    </tr>
+    <tr>
+<td><code>lng</code></td>
+<td>number</td>
+<td>
+        <p>Longitude of the place found.</p>
+      </td>
+    </tr>
+    <tr>
+<td><code>name</code></td>
+<td>string</td>
+<td>
+        <p>Display name of the place found. This is the value that is shown in the dropdown or in the input when
+validated. Without any html formatting.</p>
+
+        <p>Examples:</p>
+
+        <ul>
+          <li>Paris Île-de-France, France</li>
+          <li>589 Howard Street San Francisco, California, United States of America</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="rate-limit">Rate limit</h2>
+
+<p>FIXME</p>
+
+<h2 id="examples">Examples</h2>
+
+<p>We have complete examples for you to get inspired on what you can do with Algolia Places, have a look.</p>
