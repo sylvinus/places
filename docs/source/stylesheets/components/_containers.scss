@@ -10,10 +10,7 @@
   float: none;
   margin: auto;
   width: 100%;
-
-  @media (min-width: $bp-big) {
-    max-width: calc(#{$max-width} + 260px);
-  }
+  max-width: calc(#{$max-width});
 }
 
 section {
@@ -167,7 +164,7 @@ section {
       padding-left: 10px;
     }
 
-    @include medium-mq {
+    @include small-mq {
       width: 100%;
       padding: 0 !important;
 
@@ -178,7 +175,7 @@ section {
         img {
           width: 100%;
           position: relative;
-          top: 30px;
+          top: 0px;
           left: -8px;
         }
       }
